@@ -1,67 +1,73 @@
-function renderLicenseBadge(license) {
-  switch (license.toUpperCase()) {
-    case "GPL 3.0":
-      return "[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)";
-    case "GPL 2.0":
-      return "[![License: GPL v2](https://img.shields.io/badge/License-GPL_v2-blue.svg)](https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html)";
-    case "MIT":
-      return "[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)";
-    case "ISC":
-      return "[![License: ISC](https://img.shields.io/badge/License-ISC-blue.svg)](https://opensource.org/licenses/ISC)";
-    case "IBM":
-      return "[![License: IPL 1.0](https://img.shields.io/badge/License-IPL_1.0-blue.svg)](https://opensource.org/licenses/IPL-1.0)";
-    case "APACHE":
-      return "[![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)";
-    case "BSD 3-CLAUSE":
-      return "[![License](https://img.shields.io/badge/License-BSD_3--Clause-blue.svg)](https://opensource.org/licenses/BSD-3-Clause)";
-    case "BSD 2-CLAUSE":
-      return "[![License](https://img.shields.io/badge/License-BSD_2--Clause-orange.svg)](https://opensource.org/licenses/BSD-2-Clause)";
-    case "MOZILLA 2.0":
-      return "[![License: MPL 2.0](https://img.shields.io/badge/License-MPL_2.0-brightgreen.svg)](https://opensource.org/licenses/MPL-2.0)";
-    default:
-      return "";
+// A list of the more common open source licenses
+const licenses = Object.freeze({
+  "GPL 3.0": {
+    badge: "[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)",
+    link: "https://www.gnu.org/licenses/gpl-3.0"
+  },
+  "GPL 2.0": {
+    badge: "[![License: GPL v2](https://img.shields.io/badge/License-GPL_v2-blue.svg)](https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html)",
+    link: "https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html"
+  },
+  "MIT": {
+    badge: "[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)",
+    link: "https://opensource.org/licenses/MIT"
+  },
+  "ISC": {
+    badge: "[![License: ISC](https://img.shields.io/badge/License-ISC-blue.svg)](https://opensource.org/licenses/ISC)",
+    link: "https://opensource.org/licenses/ISC"
+  },
+  "IBM": {
+    badge: "[![License: IPL 1.0](https://img.shields.io/badge/License-IPL_1.0-blue.svg)](https://opensource.org/licenses/IPL-1.0)",
+    link: "https://opensource.org/licenses/IPL-1.0"
+  },
+  "APACHE": {
+    badge: "[![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)",
+    link: "https://opensource.org/licenses/Apache-2.0"
+  },
+  "BSD 3-CLAUSE": {
+    badge: "[![License](https://img.shields.io/badge/License-BSD_3--Clause-blue.svg)](https://opensource.org/licenses/BSD-3-Clause)",
+    link: "https://opensource.org/licenses/BSD-3-Clause"
+  },
+  "BSD 2-CLAUSE": {
+    badge: "[![License](https://img.shields.io/badge/License-BSD_2--Clause-orange.svg)](https://opensource.org/licenses/BSD-2-Clause)",
+    link: "https://opensource.org/licenses/BSD-2-Clause"
+  },
+  "MOZILLA 2.0": {
+    badge: "[![License: MPL 2.0](https://img.shields.io/badge/License-MPL_2.0-brightgreen.svg)](https://opensource.org/licenses/MPL-2.0)",
+    link: "https://opensource.org/licenses/MPL-2.0"
   }
+});
+
+function renderLicenseBadge(license) {
+  if (license.toUpperCase() in licenses) {
+    return licenses[license.toUpperCase()].badge;
+  }
+  
+  return "";
 }
 
 function renderLicenseLink(license) {
-  switch (license.toUpperCase()) {
-    case "GPL 3.0":
-      return "https://www.gnu.org/licenses/gpl-3.0";
-    case "GPL 2.0":
-      return "https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html";
-    case "MIT":
-      return "https://opensource.org/licenses/MIT";
-    case "ISC":
-      return "https://opensource.org/licenses/ISC";
-    case "IBM":
-      return "https://opensource.org/licenses/IPL-1.0";
-    case "APACHE":
-      return "https://opensource.org/licenses/Apache-2.0";
-    case "BSD 3-CLAUSE":
-      return "https://opensource.org/licenses/BSD-3-Clause";
-    case "BSD 2-CLAUSE":
-      return "https://opensource.org/licenses/BSD-2-Clause";
-    case "MOZILLA 2.0":
-      return "https://opensource.org/licenses/MPL-2.0";
-    default:
-      return "";
+  if (license.toUpperCase() in licenses) {
+    return licenses[license.toUpperCase()].link;
   }
+  
+  return "";
 }
 
 function renderTableOfContents() {
   return `
           ## Table of Contents
-          [Installation](#installation)
+          - [Installation](#installation)
           
-          [Usage](#usage)
+          - [Usage](#usage)
           
-          [License](#license)
+          - [License](#license)
           
-          [Contributing](#contributing)
+          - [Contributing](#contributing)
           
-          [Tests](#tests)
+          - [Tests](#tests)
           
-          [Questions](#questions)`;
+          - [Questions](#questions)`;
 }
 
 function renderDescriptionSection(description) {
@@ -74,7 +80,9 @@ function renderInstallationSection(installation) {
   return `
           ## Installation
           To install the necessary dependencies, run the following command:
-          \`\`\`${installation}\`\`\``;
+          \`\`\`
+            ${installation}
+          \`\`\``;
 }
 
 function renederUsageSection(usage) {
@@ -86,7 +94,7 @@ function renederUsageSection(usage) {
 function renderLicenseSection(license) {
   return `
           ## License
-          This project is licensed under the [${license}](${renderLicenseLink(license)}) license`;
+          This project is licensed under the [${license.toUpperCase()}](${renderLicenseLink(license)}) license`;
 }
 
 function renderContributingSection(contributing) {
@@ -99,7 +107,9 @@ function renderTestsSection(tests) {
   return `
           ## Tests
           To run tests, run the following command:
-          \`\`\`${tests}\`\`\`}`;
+          \`\`\`
+            ${tests}
+          \`\`\``;
 }
 
 function renderQuestionsSection(email, github) {
@@ -108,9 +118,9 @@ function renderQuestionsSection(email, github) {
           If you have any questions about the repo, open an issue or contact me directly at ${email}. You can find more of my work at [${github}](https://github.com/${github}).`;
 }
 
-// TODO: Create a function to generate markdown for README
 function generateMarkdown(data) {
-  return `# ${data.title} ${renderLicenseBadge(license)}
+  // Generates the readme.md markdown
+  return `# ${data.title} ${renderLicenseBadge(data.license)}
           ${renderDescriptionSection(data.description)}
           
           ${renderTableOfContents()}
@@ -129,4 +139,7 @@ function generateMarkdown(data) {
 `;
 }
 
-module.exports = generateMarkdown;
+module.exports = {
+  generateMarkdown,
+  licenses
+};
