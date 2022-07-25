@@ -39,6 +39,7 @@ const licenses = Object.freeze({
 });
 
 function renderLicenseBadge(license) {
+  // Returns the licence badge
   if (license.toUpperCase() in licenses) {
     return licenses[license.toUpperCase()].badge;
   }
@@ -47,6 +48,7 @@ function renderLicenseBadge(license) {
 }
 
 function renderLicenseLink(license) {
+  // Returns a license link
   if (license.toUpperCase() in licenses) {
     return licenses[license.toUpperCase()].link;
   }
@@ -55,87 +57,103 @@ function renderLicenseLink(license) {
 }
 
 function renderTableOfContents() {
+  // Displays the table of contents
   return `
-          ## Table of Contents
-          - [Installation](#installation)
-          
-          - [Usage](#usage)
-          
-          - [License](#license)
-          
-          - [Contributing](#contributing)
-          
-          - [Tests](#tests)
-          
-          - [Questions](#questions)`;
+## Table of Contents
+- [Installation](#installation)
+  
+- [Usage](#usage)
+  
+- [License](#license)
+  
+- [Contributing](#contributing)
+  
+- [Tests](#tests)
+  
+- [Questions](#questions)`;
 }
 
 function renderDescriptionSection(description) {
+  if(!description) return "";
+  
   return `
-          ## Description
-          ${description}`;
+## Description
+${description}`;
 }
 
 function renderInstallationSection(installation) {
+  if(!installation) return "";
+  
   return `
-          ## Installation
-          To install the necessary dependencies, run the following command:
-          \`\`\`
-            ${installation}
-          \`\`\``;
+## Installation
+To install the necessary dependencies, run the following command:
+\`\`\`
+  ${installation}
+\`\`\``;
 }
 
 function renederUsageSection(usage) {
+  if(!usage) return "";
+  
   return `
-          ## Usage
-          ${usage}`;
+## Usage
+${usage}`;
 }
 
 function renderLicenseSection(license) {
+  if(!license || license === "No License") return "";
+  
   return `
-          ## License
-          This project is licensed under the [${license.toUpperCase()}](${renderLicenseLink(license)}) license`;
+## License
+This project is licensed under the [${license.toUpperCase()}](${renderLicenseLink(license)}) license`;
 }
 
 function renderContributingSection(contributing) {
+  if(!contributing) return "";
+  
   return `
-          ## Contributing
-          ${contributing}`;
+## Contributing
+${contributing}`;
 }
 
 function renderTestsSection(tests) {
+  if(!tests) return "";
+  
   return `
-          ## Tests
-          To run tests, run the following command:
-          \`\`\`
-            ${tests}
-          \`\`\``;
+## Tests
+To run tests, run the following command:
+\`\`\`
+  ${tests}
+\`\`\``;
 }
 
 function renderQuestionsSection(email, github) {
+  if(!email && !github) return "";
+  
   return `
-          ## Questions
-          If you have any questions about the repo, open an issue or contact me directly at ${email}. You can find more of my work at [${github}](https://github.com/${github}).`;
+## Questions
+If you have any questions about the repo, open an issue or contact me directly at ${email}. You can find more of my work at [${github}](https://github.com/${github}).`;
 }
 
 function generateMarkdown(data) {
   // Generates the readme.md markdown
   return `# ${data.title} ${renderLicenseBadge(data.license)}
-          ${renderDescriptionSection(data.description)}
-          
-          ${renderTableOfContents()}
-          
-          ${renderInstallationSection(data.installation)}
-          
-          ${renederUsageSection(data.usage)}
-          
-          ${renderLicenseSection(data.license)}
-          
-          ${renderContributingSection(data.contributing)}
-          
-          ${renderTestsSection(data.tests)}
-          
-          ${renderQuestionsSection(data.email, data.github)}
+  
+${renderDescriptionSection(data.description)}
+  
+${renderTableOfContents()}
+  
+${renderInstallationSection(data.installation)}
+  
+${renederUsageSection(data.usage)}
+  
+${renderLicenseSection(data.license)}
+  
+${renderContributingSection(data.contributing)}
+  
+${renderTestsSection(data.tests)}
+  
+${renderQuestionsSection(data.email, data.github)}
 `;
 }
 

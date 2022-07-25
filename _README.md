@@ -14,6 +14,8 @@ Generates a professional readme file
   
 - [Contributing](#contributing)
   
+- [Tests](#tests)
+  
 - [Questions](#questions)
   
 
@@ -25,7 +27,7 @@ To install the necessary dependencies, run the following command:
   
 
 ## Usage
-Git clone the project onto your pc then run the installation instructions on the root folder
+Nothing
   
 
 ## License
@@ -34,6 +36,13 @@ This project is licensed under the [MIT](https://opensource.org/licenses/MIT) li
 
 ## Contributing
 Nothing
+  
+
+## Tests
+To run tests, run the following command:
+```
+  npm test
+```
   
 
 ## Questions

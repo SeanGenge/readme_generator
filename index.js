@@ -2,6 +2,7 @@ const inquirer = require('inquirer');
 const fs = require('fs');
 const genMarkdown = require('./utils/generateMarkdown.js');
 
+// The list of questions that will be asked
 const questions = [
     {
         type: "input",
@@ -26,6 +27,7 @@ const questions = [
     {
         type: "list",
         message: "What kind of licence should your project have?",
+        // Make it easier for the user to select the correct license
         choices: Object.keys(genMarkdown.licenses),
         name: "license"
     }, 
@@ -51,22 +53,27 @@ const questions = [
     }];
 
 function writeToFile(fileName, data) {
+    // Writes data to the readme file
     console.log("Generating a readme...");
     
-    fs.writeFile(filename, data, err => {
-        console.log(`An error occurred when generating readme: ${err}`);
+    fs.writeFile(fileName, data, err => {
+        if (err) {
+            console.log(`An error occurred when generating readme: ${err}`);
+        }
+        else {
+            console.log("Readme file generated successfully")
+        }
     });
 }
 
 function init() {
-    console.log(Object.keys(genMarkdown.licenses));
     inquirer.prompt(
         questions
     )
     .then(response => {
         let markdown = genMarkdown.generateMarkdown(response);
-        
-        console.log(markdown);
+        // Has underscore to prevent overriding this projects readme file
+        writeToFile("_README.md", markdown);
     })
     .catch(err => {
         console.log(err);
