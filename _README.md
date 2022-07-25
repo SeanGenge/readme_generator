@@ -1,8 +1,8 @@
-# Readme generator [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+# Project Title [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
   
 
 ## Description
-Generates a professional readme file
+Project description. Test project
   
 
 ## Table of Contents
@@ -27,15 +27,15 @@ To install the necessary dependencies, run the following command:
   
 
 ## Usage
-Nothing
+Git clone this repo then run the install instructions on the root folder
   
 
 ## License
-This project is licensed under the [MIT](https://opensource.org/licenses/MIT) license
+This project is licensed under the [GPL 3.0](https://www.gnu.org/licenses/gpl-3.0) license
   
 
 ## Contributing
-Nothing
+Create a new branch, make your changes and request for a pull request once complete
   
 
 ## Tests
