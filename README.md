@@ -48,7 +48,3 @@ Nothing
 
 ## Questions
 If you have any questions about the repo, open an issue or contact me directly at seangenge@gmail.com. You can find more of my work at [SeanGenge](https://github.com/SeanGenge).
-
-
-## Video
-https://watch.screencastify.com/v/v4XmMytTQ3rm4bKDOf0u
